@@ -1,0 +1,6 @@
+steps:
+- name: gcr.io/cloud-builders/git
+  args: ['clone', 'https://github.com/GoogleCloudPlatform/microservices-demo.git']
+- name: gcr.io/cloud-builders/docker
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/frontend', './microservices-demo/src/frontend/']
+images: ['gcr.io/$PROJECT_ID/frontend']
