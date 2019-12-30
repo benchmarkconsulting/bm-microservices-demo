@@ -1,6 +1,17 @@
 steps:
 - name: gcr.io/cloud-builders/git
   args: ['clone', 'https://github.com/GoogleCloudPlatform/microservices-demo.git']
+- name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+  args:
+    - '-Dsonar.host.url=${_SONAR_HOST}'
+    - '-Dsonar.login=${_SONAR_LOGIN}'
+    - '-Dsonar.projectKey=${_SONAR_PROJECT}'
+    - '-Dsonar.sources=${_SONAR_SOURCES}'
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/checkoutservice', './microservices-demo/src/checkoutservice/']
-images: ['gcr.io/$PROJECT_ID/checkoutservice']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_SONAR_PROJECT}', './microservices-demo/src/${_SONAR_PROJECT}/']
+substitutions:
+    _SONAR_HOST: 
+    _SONAR_LOGIN: 
+    _SONAR_PROJECT: 
+    _SONAR_SOURCES: 
+images: ['gcr.io/$PROJECT_ID/${_SONAR_PROJECT}']
