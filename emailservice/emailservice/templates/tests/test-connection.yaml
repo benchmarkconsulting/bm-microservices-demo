@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "emailservice.fullname" . }}-test-connection-{{ lower "randAlphaNum 5" }}"
+  name: {{ include "emailservice.fullname" . }}-test-connection-{{ lower "randAlphaNum 5" }}
   labels:
 {{ include "emailservice.labels" . | indent 4 }}
   annotations:
