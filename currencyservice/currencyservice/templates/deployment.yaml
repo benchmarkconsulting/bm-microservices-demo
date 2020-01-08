@@ -33,7 +33,7 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
           env:
-            - name: http
+            - name: PORT
               value: "7000"
           livenessProbe:
             exec:
