@@ -30,17 +30,16 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: 3550
-              protocol: TCP
+          - containerPort: {{ .Values.service.port }}
+          env:
+          - name: PORT
+            value: "3550"
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+            command: ["/bin/grpc_health_probe", "-addr=:3550"]
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+            command: ["/bin/grpc_health_probe", "-addr=:3550"]
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
