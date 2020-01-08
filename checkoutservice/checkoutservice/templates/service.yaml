@@ -8,8 +8,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
+      targetPort: {{ .Values.service.port }}
       name: http
   selector:
     app.kubernetes.io/name: {{ include "checkoutservice.name" . }}
