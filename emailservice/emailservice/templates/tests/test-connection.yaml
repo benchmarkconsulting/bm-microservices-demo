@@ -8,8 +8,8 @@ metadata:
     "helm.sh/hook": test-success
 spec:
   containers:
-    - name: wget
+    - name: grpcurl
       image: busybox
-      command: ['wget']
+      command: ['grpcurl']
       args:  ['{{ include "emailservice.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
