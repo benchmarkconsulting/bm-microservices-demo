@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "checkoutservice.fullname" . }}-test-connection"
+  name: "{{ include "checkoutservice.fullname" . }}-test-connection-{{ randAlphaNum 5 }}"
   labels:
 {{ include "checkoutservice.labels" . | indent 4 }}
   annotations:
