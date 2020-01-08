@@ -31,16 +31,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 7000
-              protocol: TCP
+              containerPort: {{ .Values.service.port }}
+          env:
+            - name: http
+              value: "7000"
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+              command: ["/bin/grpc_health_probe", "-addr=:7000"]
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+              command: ["/bin/grpc_health_probe", "-addr=:7000"]
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
