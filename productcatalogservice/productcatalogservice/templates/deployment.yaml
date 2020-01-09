@@ -36,10 +36,10 @@ spec:
               value: "3550"
           livenessProbe:
             exec:
-            command: ["/bin/grpc_health_probe", "-addr=:3550"]
+              command: ["/bin/grpc_health_probe", "-addr=:3550"]
           readinessProbe:
             exec:
-            command: ["/bin/grpc_health_probe", "-addr=:3550"]
+              command: ["/bin/grpc_health_probe", "-addr=:3550"]
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
