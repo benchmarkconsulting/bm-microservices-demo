@@ -8,8 +8,8 @@ metadata:
     "helm.sh/hook": test-success
 spec:
   containers:
-    - name: grpcurl
-      image: busybox
-      command: ['grpcurl']
-      args:  ['{{ include "emailservice.fullname" . }}:{{ .Values.service.port }}']
+    - name: grpc-test
+      image: gcr.io/manage-261115/grpc-test:latest
+      command: ["/bin/grpc_health_probe", "-addr={{ include "emailservice.fullname" . }}:{{ .Values.service.port }}"]
   restartPolicy: Never
+
