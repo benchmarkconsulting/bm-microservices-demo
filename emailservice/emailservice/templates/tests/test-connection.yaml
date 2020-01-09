@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "emailservice.fullname" . }}-test-connection"
+  name: "{{ include "emailservice.fullname" . }}-test-connection-{{ randAlphaNum 5 | lower }}"
   labels:
 {{ include "emailservice.labels" . | indent 4 }}
   annotations:
@@ -12,3 +12,4 @@ spec:
       image: gcr.io/manage-261115/grpc-test:latest
       command: ["/bin/grpc_health_probe", "-addr={{ include "emailservice.fullname" . }}:{{ .Values.service.port }}"]
   restartPolicy: Never
+
