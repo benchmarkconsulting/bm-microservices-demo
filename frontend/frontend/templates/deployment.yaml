@@ -47,25 +47,23 @@ spec:
             - name: AD_SERVICE_ADDR
               value: "adservice:9555"
           ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
+            - containerPort: 8080
           livenessProbe:
             initialDelaySeconds: 10
             httpGet:
               path: "/_healthz"
               port: 8080
               httpHeaders:
-              - name: "Cookie"
-                value: "shop_session-id=x-liveness-probe"
+                - name: "Cookie"
+                  value: "shop_session-id=x-liveness-probe"
           readinessProbe:
             initialDelaySeconds: 10
             httpGet:
               path: "/_healthz"
               port: 8080
               httpHeaders:
-              - name: "Cookie"
-                value: "shop_session-id=x-readiness-probe"
+                - name: "Cookie"
+                  value: "shop_session-id=x-readiness-probe"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
