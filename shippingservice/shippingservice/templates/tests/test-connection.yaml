@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "shippingservice.fullname" . }}-test-connection-{{ randAlphaNum 5 }}"
+  name: "{{ include "shippingservice.fullname" . }}-test-connection-{{ randAlphaNum 5 | lower }}"
   labels:
 {{ include "shippingservice.labels" . | indent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
   containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args:  ['{{ include "shippingservice.fullname" . }}:{{ .Values.service.port }}']
+    - name: grpc-test
+      image: gcr.io/manage-261115/grpc-test:latest
+      command: ["/bin/grpc_health_probe", "-addr={{ include "shippingservice.fullname" . }}:{{ .Values.service.port }}"]
   restartPolicy: Never
