@@ -30,7 +30,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-              containerPort: {{ .Values.service.port }}
+              containerPort: 8080
           livenessProbe:
             periodSeconds: 5
             exec:
