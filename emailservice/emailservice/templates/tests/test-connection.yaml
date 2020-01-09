@@ -12,4 +12,3 @@ spec:
       image: gcr.io/manage-261115/grpc-test:latest
       command: ["/bin/grpc_health_probe", "-addr={{ include "emailservice.fullname" . }}:{{ .Values.service.port }}"]
   restartPolicy: Never
-

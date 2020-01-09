@@ -38,8 +38,8 @@ spec:
           livenessProbe:
             initialDelaySeconds: 20
             periodSeconds: 15
-              exec:
-                command: ["/bin/grpc_health_probe", "-addr=:9555"]
+            exec:
+              command: ["/bin/grpc_health_probe", "-addr=:9555"]
           readinessProbe:
             initialDelaySeconds: 20
             periodSeconds: 15
