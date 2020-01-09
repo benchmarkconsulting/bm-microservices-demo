@@ -47,12 +47,12 @@ spec:
             - name: AD_SERVICE_ADDR
               value: "adservice:9555"
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.targetPort }}
           livenessProbe:
             initialDelaySeconds: 10
             httpGet:
               path: "/_healthz"
-              port: 8080
+              port: {{ .Values.service.targetPort }}
               httpHeaders:
                 - name: "Cookie"
                   value: "shop_session-id=x-liveness-probe"
@@ -60,7 +60,7 @@ spec:
             initialDelaySeconds: 10
             httpGet:
               path: "/_healthz"
-              port: 8080
+              port: {{ .Values.service.targetPort }}
               httpHeaders:
                 - name: "Cookie"
                   value: "shop_session-id=x-readiness-probe"
