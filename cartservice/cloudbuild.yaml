@@ -1,0 +1,16 @@
+steps:
+- name: 'us.gcr.io/${PROJECT_ID}/helm'
+  env:
+  - 'HELM_REPO_NAME=${_HELM_REPO_NAME}'
+  - 'HELM_REPO_URL=${_HELM_REPO_URL}'
+  - 'CHART_PATH=${_CHART_PATH}'
+  - 'CHART_VERSION=${_CHART_VERSION}'
+  - 'CHART_NAME=${_CHART_NAME}'
+  - 'APP_VERSION=${_APP_VERSION}'
+substitutions:
+    _APP_VERSION:  # default value
+    _CHART_VERSION:  # default value
+    _CHART_NAME:  # default value
+    _HELM_REPO_NAME:  # default value
+    _HELM_REPO_URL:  # default value
+    _CHART_PATH: # default value
