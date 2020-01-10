@@ -1,0 +1,27 @@
+steps:
+- name: gcr.io/cloud-builders/git
+  args: ['clone', 'https://github.com/GoogleCloudPlatform/microservices-demo.git']
+- name: gcr.io/cloud-builders/docker
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_SONAR_PROJECT}', './microservices-demo/src/${_SONAR_PROJECT}/']
+- name: gcr.io/cloud-builders/git
+  args: ['clone', 'https://github.com/benchmarkconsulting/bm-microservices-demo.git']
+- name: 'us.gcr.io/${PROJECT_ID}/helm'
+  env:
+  - 'HELM_REPO_NAME=${_HELM_REPO_NAME}'
+  - 'HELM_REPO_URL=${_HELM_REPO_URL}'
+  - 'CHART_PATH=${_CHART_PATH}'
+  - 'CHART_VERSION=${_CHART_VERSION}'
+  - 'CHART_NAME=${_CHART_NAME}'
+  - 'APP_VERSION=${_APP_VERSION}'
+substitutions:
+    _SONAR_HOST: 
+    _SONAR_LOGIN: 
+    _SONAR_PROJECT: 
+    _SONAR_SOURCES: 
+    _APP_VERSION:  # default value
+    _CHART_VERSION:  # default value
+    _CHART_NAME:  # default value
+    _HELM_REPO_NAME:  # default value
+    _HELM_REPO_URL:  # default value
+    _CHART_PATH: # default value
+images: ['gcr.io/$PROJECT_ID/${_SONAR_PROJECT}']
