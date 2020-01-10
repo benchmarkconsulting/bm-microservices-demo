@@ -34,7 +34,7 @@ spec:
               containerPort: {{ .Values.service.port }}
           env:
             - name: REDIS_ADDR
-              value: "redis-cart:6379"
+              value: "cartservice-redis-cart:6379"
             - name: PORT
               value: "7070"
             - name: LISTEN_ADDR
