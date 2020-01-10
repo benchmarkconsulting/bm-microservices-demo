@@ -1,3 +1,3 @@
 dependencies:
-- name: redis
-  repository: gcs://bm-helmcharts
+  - name: redis
+    repository: gcs://bm-helmcharts
