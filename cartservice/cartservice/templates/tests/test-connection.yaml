@@ -10,5 +10,5 @@ spec:
   containers:
     - name: grpc-test
       image: gcr.io/manage-261115/grpc-test:latest
-      command: ["/bin/grpc_health_probe", "-addr={{ include "cartservice.fullname" . }}:{{ .Values.service.port }}"]
+      command: ["/bin/grpc_health_probe", "-addr={{ include "cartservice.fullname" . }}:{{ .Values.service.port }} -connect-timeout 5000ms -rpc-timeout 100ms"]
   restartPolicy: Never
