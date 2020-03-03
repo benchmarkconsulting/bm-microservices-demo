@@ -37,6 +37,7 @@ Common labels
 {{- define "adservice.labels" -}}
 app.kubernetes.io/name: {{ include "adservice.name" . }}
 helm.sh/chart: {{ include "adservice.chart" . }}
+release: {{ .Release.Name }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
