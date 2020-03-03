@@ -38,6 +38,7 @@ Common labels
 app.kubernetes.io/name: {{ include "recommendationservice.name" . }}
 helm.sh/chart: {{ include "recommendationservice.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+release: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
