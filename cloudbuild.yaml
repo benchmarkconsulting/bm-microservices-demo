@@ -8,7 +8,7 @@ steps:
     - '-Dsonar.projectKey=${_SONAR_PROJECT}'
     - '-Dsonar.sources=${_SONAR_SOURCES}'
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_SONAR_PROJECT}', './microservices-demo/src/${_SONAR_PROJECT}/']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_SONAR_PROJECT}:${_APP_VERSION}', './microservices-demo/src/${_SONAR_PROJECT}/']
 - name: gcr.io/cloud-builders/git
   args: ['clone', 'https://github.com/benchmarkconsulting/bm-microservices-demo.git']
 - name: 'us.gcr.io/${PROJECT_ID}/helm'
@@ -30,4 +30,4 @@ substitutions:
     _HELM_REPO_NAME:  # default value
     _HELM_REPO_URL:  # default value
     _CHART_PATH: # default value
-images: ['gcr.io/$PROJECT_ID/${_SONAR_PROJECT}']
+images: ['gcr.io/$PROJECT_ID/${_SONAR_PROJECT}:${_APP_VERSION}']
