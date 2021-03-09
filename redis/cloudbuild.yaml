@@ -1,5 +1,5 @@
 steps:
-- name: 'us.gcr.io/${PROJECT_ID}/helm'
+- name: 'us.gcr.io/${PROJECT_ID}/helmv3'
   env:
   - 'HELM_REPO_NAME=${_HELM_REPO_NAME}'
   - 'HELM_REPO_URL=${_HELM_REPO_URL}'
